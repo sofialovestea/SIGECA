@@ -1,0 +1,259 @@
+﻿@{
+    ViewBag.Title = "CitaNueva";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>S I G E C A</title>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+
+    <script type="text/javascript" src="~/Scripts/prueba.js"></script>
+    <script type="text/javascript" src="~/Scripts/prueba2.js"></script>
+
+    <script>
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+    </script>
+
+    <!-- BOOTSTRAP STYLES-->
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="~/css/font-awesome.css" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+    <link href="~/css/custom.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href="~/css/calendario.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"> SIGECA </a>
+
+
+                <div style="color:white; background:gray; padding: 15px 50px 5px 50px; float:right; font-size:15px;">
+                    <i class="glyphicon glyphicon-user"> SIGECA </i>
+                    <div id="Fecha"></div>
+                    <a href="#" class="btn-dark">Salir</a>
+                </div>
+
+            </div>
+        </nav>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li class="text-center">
+
+                        <!-- tamaño de iconos es 32x32 se descargadon en flat icon -->
+                        <img src="/Imagenes/Muni.jpg" class="user-image img-responsive" />
+                    </li>
+                    <li>
+                        <a href="@Url.Action("MenuPsicologa", "Shared")"> <i class="menu-fontStyle"></i> <img src="/Imagenes/home.png" /> Inicio  </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("CitaNueva", "Shared")"><i class="menu-fontStyle"></i> <img src="/Imagenes/nuevaCita.png" /> Nueva Cita</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Seguimiento", "Shared")"><i class="menu-fontStyle"></i><img src="/Imagenes/nuevaCita.png" /> Cita Seguimiento</a>
+                    </li>
+                    <li>
+                        <a href="tab-panel.html"><i class="menu-fontStyle"></i><img src="/Imagenes/editarCalendario.png" />  Editar Cita</a>
+                    </li>
+                    <li><i class="menu-fontStyle"> </i>  </li>
+                    <li> <i class="menu-fontStyle"></i></li>
+                    <li> <i class="menu-fontStyle"></i>  </li>
+                    <li> <i class="menu-fontStyle"></i> </li>
+                    <li> <i class="menu-fontStyle"></i> </li>
+
+
+                </ul>
+            </div>
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <h1>Cita Nueva</h1>
+                <!-- Formulario Informacion Personal -->
+                <div id="agendar" class="tabcontent">
+
+                    <form class="well form-horizontal" action=" " method="post" id="contact_form">
+
+                        <fieldset>
+                            <!-- Nombre Completo -->
+                            <div class="form-group">
+                                <label class="col-md-1 control-label">Nombre completo<font color="red">*</font></label>
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input name="nombre" placeholder="Nombre completo" class="form-control" type="text" required>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!--Seleccionar el tipo de identificacion-->
+
+                            <div class="form-group">
+                                <label class="col-md-1 control-label">Tipo de identificación<font color="red">*</font></label>
+                                <div class="col-md-2 selectContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                        <select name="state" class="form-control selectpicker" required>
+                                            <option value="macional ">Nacional</option>
+                                            <option value="extranjero">Extranjero</option>
+                                            <option value="indocumentado">Indocumentado</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <label class="col-md-1 control-label">Identificación</label>
+                                <div class="col-md-5 inputGroupContainer">
+
+                                    <div class="input-group">
+                                        &nbsp;  &nbsp;
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-info-sign"></i></span>
+                                        <input name="identificacion" placeholder="10111101111" class="form-control" type="text" style="width:150px;height:35px;">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!--Segunda fila -->
+                            <div class="form-group">
+                                <label class="col-md-1 control-label">Teléfono1<font color="red">*</font> <font size="1" color="blue">2430 1212</font></label>
+                                <div class="col-md-2 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                        <input name="telefono1" placeholder="5555-12121" class="form-control" type="text" required>
+                                    </div>
+                                </div>
+                                <label class="col-md-1 control-label">Teléfono2</label>
+                                <div class="col-md-2 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                        <input name="telefono2" placeholder="5555-12121" class="form-control" type="text">
+                                    </div>
+                                </div>
+                                <label class="col-md-1 control-label">Teléfono3</label>
+                                <div class="col-md-2 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                        <input name="telefono3" placeholder="5555-12121" class="form-control" type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!--Ingresar datos para la cita -->
+                            <div class="form-group">
+                                <label class="col-md-1 control-label">Psicologa <font color="red">*</font></label>
+                                <div class="col-md-2 selectContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                        <select name="state" class="form-control selectpicker" style="width:200px;height:32px;" required>
+                                            <option value=" ">Seleccione la Psicologa</option>
+                                            <option>Magaly Acuña</option>
+                                            <option>Andrea Corrales</option>
+                                            <option>Karen </option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-1 control-label">Fecha</label>
+                                <div class="col-md-2 inputGroupContainer">
+                                    <div class="input-group">
+                                        <div class="col-md-4 selectContainer">
+                                            <form action="@Url.Action("AgendaHorario", "Shared")" method="get">
+                                                <input type="text" id="datepicker">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <label class="col-md-1 control-label">Hora<font color="red">*</font></label>
+                                <div class="col-md-2 selectContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                        <select name="state" class="form-control selectpicker" style="width:200px;height:32px; required">
+                                            <option value=" ">Seleccione la hora</option>
+                                            <option>9:00 am</option>
+                                            <option>10:00 am</option>
+                                            <option>11:00 am </option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Button -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"></label>
+                                <div class="col-md-4">
+                                    <button type="submit" class="Boton">Guardar</button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">     </div>
+                            <div class="form-group">     </div>
+                            <div class="form-group">     </div>
+                            <div class="form-group">     </div>
+                            <div class="form-group">     </div>
+                            <div class="form-group">     </div>
+
+
+
+                        </fieldset>
+
+                    </form>
+
+
+
+
+
+                    <!-- /. ROW  -->
+
+                </div>  <!-- /. PAGE INNER  -->
+
+            </div>
+            <!-- /. PAGE WRAPPER  -->
+
+
+
+
+        </div>
+        <!-- /. WRAPPER  -->
+        <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+        <!-- JQUERY SCRIPTS -->
+        <script src="js/jquery-1.10.2.js"></script>
+        <!-- BOOTSTRAP SCRIPTS -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- METISMENU SCRIPTS -->
+        <script src="js/jquery.metisMenu.js"></script>
+        <script src="~/Scripts/MenuIF.js"></script>
+        <!-- CUSTOM SCRIPTS -->
+        <script src="js/custom.js"></script>
+        <!------HORA SCRIPT-------->
+        <script src="~/Scripts/Hora.js"></script>
+
+
+</body>
+</html>
+

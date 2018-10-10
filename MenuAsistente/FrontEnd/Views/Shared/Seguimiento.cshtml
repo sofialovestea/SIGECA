@@ -1,0 +1,271 @@
+﻿@{
+    ViewBag.Title = "Seguimiento";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>S I G E C A</title>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+
+    <script type="text/javascript" src="~/Scripts/prueba.js"></script>
+    <script type="text/javascript" src="~/Scripts/prueba2.js"></script>
+
+    <script>
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+    </script>
+    <!-- BOOTSTRAP STYLES-->
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="~/css/font-awesome.css" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+    <link href="~/css/custom.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"> SIGECA </a>
+
+
+                <div style="color:white; background:gray; padding: 15px 50px 5px 50px; float:right; font-size:15px;">
+                    <i class="glyphicon glyphicon-user"> SIGECA </i>
+                    <div id="Fecha"></div>
+                    <a href="#" class="btn-dark">Salir</a>
+                </div>
+
+            </div>
+        </nav>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li class="text-center">
+
+                        <!-- tamaño de iconos es 32x32 se descargadon en flat icon -->
+                        <img src="/Imagenes/Muni.jpg" class="user-image img-responsive" />
+                    </li>
+                    <li>
+                        <a href="@Url.Action("MenuAsistente", "Shared")"> <i class="menu-fontStyle"></i> <img src="/Imagenes/home.png" /> Inicio  </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("CitaNueva", "Shared")"><i class="menu-fontStyle"></i> <img src="/Imagenes/nuevaCita.png" /> Nueva Cita</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Seguimiento", "Shared")"><i class="menu-fontStyle"></i><img src="/Imagenes/nuevaCita.png" /> Cita Seguimiento</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("EditarCita", "Shared")"><i class="menu-fontStyle"></i><img src="/Imagenes/editarCalendario.png" />  Editar Cita</a>
+                    </li>
+                    <li><i class="menu-fontStyle"> </i>  </li>
+                    <li> <i class="menu-fontStyle"></i></li>
+                    <li> <i class="menu-fontStyle"></i>  </li>
+                    <li> <i class="menu-fontStyle"></i> </li>
+                    <li> <i class="menu-fontStyle"></i> </li>
+
+
+                </ul>
+            </div>
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <form class="well form-horizontal" action=" " method="post" id="contact_form">
+
+                <fieldset>
+                    <legend align="center"> <b> Buscar Persona</b> </legend><br /><br /><br />
+                    <div class="form-group">
+                        <label class="col-md-1 control-label">Tipo de busqueda<font color="red">*</font></label>
+                        <div class="col-md-2 selectContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                <select name="state" class="form-control selectpicker" style="width:150px;height:32px;">
+                                    <option value="identificacion ">Identificacion</option>
+                                    <option value="nombre">Nombre</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-1 control-label">Buscar </label>
+                        <div class="col-md-5 inputGroupContainer">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-info-sign"></i></span>
+                                <input name="buscar" class="form-control" type="search" style="width:250px;height:32px;" required>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"></label>
+                        <div class="col-md-4">
+                            <button type="submit" class="Boton">Buscar</button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+
+            <div>
+                <div class="panel-body">
+                    <div class="table-container">
+                        <table class="table-users table" border="0">
+                            <tbody>
+                                <tr>
+                                    <td width="10" align="center"></td>
+                                    <td>
+                                        <b>Nombre</b><br>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td width="10" align="center"></td>
+                                    <td>
+                                        Sofia Aguilar Corrales<br>
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="Nueva Cita">
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td width="10" align="center"></td>
+                                    <td>
+                                        Sofia Hernandez<br>
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="Nueva Cita">
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+            <div>
+
+                <form class="well form-horizontal" action=" " method="post" id="contact_form">
+
+                    <fieldset>
+                        <!--Ingresar datos para la cita -->
+                        <legend>Datos Cita</legend>
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Psicologa <font color="red">*</font></label>
+                            <div class="col-md-2 selectContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                    <select name="state" class="form-control selectpicker" style="width:200px;height:32px;" required>
+                                        <option value=" ">Seleccione la Psicologa</option>
+                                        <option>Magaly Acuña</option>
+                                        <option>Andrea Corrales</option>
+                                        <option>Karen </option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Fecha</label>
+                            <div class="col-md-2 inputGroupContainer">
+                                <div class="input-group">
+                                    <div class="col-md-4 selectContainer">
+                                        <form action="@Url.Action("AgendaHorario", "Shared")" method="get">
+                                            <input type="text" id="datepicker">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <label class="col-md-2 control-label">Hora<font color="red">*</font></label>
+                            <div class="col-md-3 selectContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                    <select name="state" class="form-control selectpicker" style="width:200px;height:32px; required">
+                                        <option value=" ">Seleccione la hora</option>
+                                        <option>9:00 am</option>
+                                        <option>10:00 am</option>
+                                        <option>11:00 am </option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Button -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label"></label>
+                            <div class="col-md-4">
+                                <button type="submit" class="Boton">Guardar</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">     </div>
+                        <div class="form-group">     </div>
+                        <div class="form-group">     </div>
+                        <div class="form-group">     </div>
+                        <div class="form-group">     </div>
+                        <div class="form-group">     </div>
+
+
+
+                    </fieldset>
+
+                </form>
+
+
+
+
+
+                <!-- /. ROW  -->
+
+            </div>
+
+
+
+            <!-- /. PAGE INNER  -->
+        </div>
+
+
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="js/jquery.metisMenu.js"></script>
+    <script src="~/Scripts/MenuIF.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="js/custom.js"></script>
+    <!------HORA SCRIPT-------->
+    <script src="~/Scripts/Hora.js"></script>
+
+
+
+</body>
+</html>

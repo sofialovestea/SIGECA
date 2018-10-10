@@ -1,0 +1,659 @@
+﻿@{
+    ViewBag.Title = "ConsultarExpediente";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>S I G E C A</title>
+    <!-- BOOTSTRAP STYLES-->
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="~/css/font-awesome.css" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+    <link href="~/css/custom.css" rel="stylesheet" />
+    <!-- CSS MENU-->
+    <link href="~/Content/MenuTab.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <!--funcionaldad múltiple selelect-->
+    <link href="~/Content/multiple-select.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom:auto">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"> SIGECA </a>
+
+
+                <div style="color:white; background:gray; padding: 15px 50px 5px 50px; float:right; font-size:15px;">
+                    <i class="glyphicon glyphicon-user"> SIGECA </i>
+                    <div id="Fecha"></div>
+                    <a href="#" class="btn-dark">Salir</a>
+                </div>
+
+            </div>
+        </nav>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li class="text-center">
+                        <!-- tamaño de iconos es 32x32 se descargan en flat icon -->
+                        <img src="/Imagenes/Muni.jpg" class="user-image img-responsive" />
+                    </li>
+                    <li>
+                        <a href="@Url.Action("MenuPsicologa", "Shared")"> <i class="menu-fontStyle"></i> <img src="/Imagenes/home.png" /> Inicio  </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("CrearExpediente", "Shared")"> <i class="menu-fontStyle"></i> <img src="/Imagenes/consultarExpediente.png" />Crear expediente</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("EditarExpediente", "Shared")"> <i class="menu-fontStyle"></i> <img src="/Imagenes/user.png" />Editar expediente</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("ActivarInactivarExpediente", "Shared")"> <i class="menu-fontStyle"></i> <img src="/Imagenes/user.png" /> Activar/ inactivar</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("ConsultarExpediente", "Shared")"> <i class="menu-fontStyle"></i> <img src="/Imagenes/consultarExpediente.png" /> Consultar Expediente </a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </nav>
+        <div id="page-wrapper">
+            <form class="well form-horizontal" action=" " method="post" id="contact_form">
+
+                <fieldset>
+                    <legend align="center"> <b> Consultar expediente</b> </legend><br /><br /><br />
+                    <div class="form-group">
+                        <label class="col-md-1 control-label">Tipo de identificación<font color="red">*</font></label>
+                            <div class="col-md-3 selectContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                    <select name="state" class="form-control selectpicker">
+                                        <option value="cedula ">Cédula</option>
+                                        <option value="pasaporte">Pasaporte</option>
+                                        <option value="indocumentado">Indocumentado</option>
+                                    </select>
+                                </div>
+                            </div>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="first_name" placeholder="Identificación" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"></label>
+                        <div class="col-md-4">
+                            <button type="submit" class="Boton">Consultar</button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+
+            <div class="tab">
+                <!-- Esto funcionalidad está en Tabs.js -->
+                <button class="tablinks" onclick="openTab(event,'IP')">Infromación personal</button>
+                <button class="tablinks" onclick="openTab(event,'D')">Diagnóstico</button>
+                <button class="tablinks" onclick="openTab(event,'S')">Seguimiento</button>
+                <button class="tablinks" onclick="openTab(event,'A')">Ajuntar archivos</button>
+            </div>
+            <!-------------------------------------------- Form Información Personal----------------------------------- -->
+            <div id="IP" class="tabcontent">
+
+                <form class="well form-horizontal" action=" " method="post" id="contact_form">
+
+                    <fieldset>
+                        <legend align="center"> <b> Información personal </b> </legend><br /><br /><br />
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Nombre completo</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input name="first_name" placeholder="" class="form-control" type="text" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Tipo de identificación</label>
+                            <div class="col-md-2 selectContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                    <input name="state" class="form-control selectpicker" disabled>
+
+                                </div>
+                            </div>
+                            <label class="col-md-1 control-label">Identificación</label>
+                            <div class="col-md-2 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-info-sign"></i></span>
+                                    <input name="first_name" placeholder="" class="form-control" type="text" disabled>
+                                </div>
+                            </div>
+                            <label class="col-md-1 control-label">Edad</label>
+                            <div class="col-md-1 ">
+                                <div class="input-group">
+                                    <input name="email" placeholder="Edad" class="form-control" type="text" disabled>
+                                </div>
+                            </div>
+                            <label class="col-md-1 control-label">Fecha de nacimiento</label>
+                            <div class="col-md-2 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    <input name="phone" placeholder="" class="form-control" disabled>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Teléfono1</label>
+                            <div class="col-md-2 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                    <input name="phone" placeholder="" class="form-control" type="text" disabled>
+                                </div>
+                            </div>
+                            <label class="col-md-1 control-label">Teléfono2</label>
+                            <div class="col-md-2 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                    <input name="phone" placeholder="" class="form-control" type="text" disabled>
+                                </div>
+                            </div>
+                            <label class="col-md-1 control-label">Teléfono3</label>
+                            <div class="col-md-2 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                    <input name="phone" placeholder="" class="form-control" type="text" disabled>
+                                </div>
+                            </div>
+                            <label class="col-md-1 control-label">Sexo</label>
+                            <div class="col-md-1">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="hosting" value="femenino" disabled />Femenino
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="hosting" value="masculino" disabled />Masculino
+                                    </label>
+                                </div>
+
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="hosting" value="otro" disabled />Otro
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">¿Se puede dejar un mensaje?</label>
+                            <div class="col-md-1">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="hosting" value="si" disabled />Sí
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="hosting" value="no" disabled />No
+                                    </label>
+                                </div>
+                            </div>
+                            <label class="col-md-1 control-label">¿Con quién?</label>
+                            <div class="col-md-2 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <textarea style="text-align: center;" rows="4" cols="55" name="address" placeholder="" class="form-control" disabled></textarea>
+                                </div>
+                            </div>
+                            <label class="col-md-1 control-label">Escolaridad</label>
+                            <div class="col-md-2 selectContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                    <input name="state" class="form-control selectpicker" disabled>
+
+                                </div>
+                            </div>
+                            <label class="col-md-1 control-label">Ocupación</label>
+                            <div class="col-md-3 selectContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                    <input name="state" class="form-control selectpicker" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Lugar de trabajo y dirección exacta</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <textarea style="text-align: center;" rows="2" cols="55" name="website" placeholder="" class="form-control" disabled></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Estado civil</label>
+                            <div class="col-md-2 selectContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                    <select name="state" class="form-control selectpicker" disabled></select>
+                                </div>
+                            </div>
+                            <label class="col-md-1 control-label">Nacionalidad</label>
+                            <div class="col-md-3 selectContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                    <select name="state" class="form-control selectpicker" disabled></select>
+                                </div>
+                            </div>
+                            <label class="col-md-1 control-label">Distrito</label>
+                            <div class="col-md-2 selectContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                    <input name="state" class="form-control selectpicker" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">¿Tiene hijos (as)?</label>
+                            <div class="col-md-2">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="hosting" value="si" disabled />Sí
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="hosting" value="no" disabled />No
+                                    </label>
+                                </div>
+                            </div>
+                            <label class="col-md-2 control-label">Número de hijos (as) y edades</label>
+                            <div class="col-md-5 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input name="city" placeholder="" class="form-control" type="text" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Dirección de la vivienda</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                    <textarea style="text-align: center;" rows="2" cols="55" name="website" placeholder="" class="form-control" disabled></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Dirección en la que ocurrió la situación de violencia</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <textarea style="text-align: center;" rows="2" cols="55" name="website" placeholder="" class="form-control" disabled></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Personas con las que vive</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <textarea style="text-align: center;" rows="2" cols="55" name="website" placeholder="" class="form-control" disabled></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+                </form>
+
+            </div> <!-----------------------------------------Fin IP--------------------------------------------->
+            <!-------------------------------------------------- Form Diagnóstico ------------------------------->
+            <div id="D" class="tabcontent">
+                <form class="well form-horizontal" action=" " method="post" id="contact_form">
+
+                    <fieldset>
+                        <!-- Form Name -->
+                        <legend align="center"> <b> Diagnóstico </b> </legend><br /><br /><br />
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Tipo de demanda</label>
+                            <div class="col-md-3 selectContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                    <input name="state" class="form-control selectpicker" disabled>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Referencia a otra institución</label>
+                            <div class="col-md-7 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input name="phone" placeholder="" class="form-control" type="text" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Tipo de violencia identificados</label>
+                            <label class="col-md-4 control-label">Indicadores</label>
+                        </div>
+                        <br>
+
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Física</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <textarea style="text-align: center;" rows="3" cols="55" name="website" placeholder="" class="form-control" disabled></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Psicológica</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <textarea style="text-align: center;" rows="3" cols="55" name="website" placeholder="" class="form-control" disabled></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Sexual</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <textarea style="text-align: center;" rows="3" cols="55" name="website" placeholder="" class="form-control" disabled></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Patrimonial</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <textarea style="text-align: center;" rows="3" cols="55" name="website" placeholder="" class="form-control" disabled></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="DPA">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label">Datos de las personas agresoras</label>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label class="col-md-1 control-label">Nombre completo</label>
+                                    <div class="col-md-7 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                            <input name="phone" placeholder="" class="form-control" type="text" disabled>
+                                        </div>
+                                    </div>
+                                    <label class="col-md-1 control-label">Edad</label>
+                                    <div class="col-md-2 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-info-sign"></i></span>
+                                            <input name="phone" placeholder="" class="form-control" type="text" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-1 control-label">Cédula</label>
+                                    <div class="col-md-3 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                            <input name="phone" placeholder="" class="form-control" type="text" disabled>
+                                        </div>
+                                    </div>
+                                    <label class="col-md-1 control-label">Ocupación</label>
+                                    <div class="col-md-4 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-info-sign"></i></span>
+                                            <input name="phone" placeholder="" class="form-control" type="text" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-1 control-label">Nacionalidad</label>
+                                    <div class="col-md-3 selectContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                            <input name="state" class="form-control selectpicker" disabled>
+
+                                        </div>
+                                    </div>
+
+                                    <label class="col-md-1 control-label">Parentesco</label>
+                                    <div class="col-md-3 selectContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                            <input name="state" class="form-control selectpicker" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Atención brindada</label>
+                            <div class="col-md-6 selectContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                    <input name="state" class="form-control selectpicker" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Referencias internas para seguimiento</label>
+                            <div class="col-md-6 selectContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                    <input name="state" class="form-control selectpicker" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Referencias internas</label>
+                            <div class="col-md-7 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input name="phone" placeholder="" class="form-control" type="text" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label class="col-md-8 control-label">Resumen de la situación de violencia presentada</label>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Motivo de consulta en general</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <textarea style="text-align: center;" rows="3" cols="55" name="website" placeholder="" class="form-control" disabled></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Secuelas de violencia vivida</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <textarea style="text-align: center;" rows="3" cols="55" name="website" placeholder="" class="form-control" disabled></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Factores de riesgo y protectores identificados</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <textarea style="text-align: center;" rows="3" cols="55" name="website" placeholder="" class="form-control" disabled></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Intervenciones realizadas</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <textarea style="text-align: center;" rows="3" cols="55" name="website" placeholder="" class="form-control" disabled></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Valoración en general</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <textarea style="text-align: center;" rows="3" cols="55" name="website" placeholder="" class="form-control" disabled></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Responsable a cargo</label>
+                            <div class="col-md-9 inputGroupContainer">
+                                <div class="input-group">
+                                    <input name="first_name" placeholder="" class="form-control" type="text" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Cargo</label>
+                            <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                    <input name="first_name" placeholder="" class="form-control" type="text" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                </form>
+
+            </div> <!----------------------------------Fin Diagnóstico------------------------------------------------->
+
+            <div id="S" class="tabcontent">
+                <!-----------------------Seguimiento---------------------------------------->
+                <form class="well form-horizontal" action=" " method="post" id="contact_form">
+
+                    <fieldset>
+                        <legend align="center"> <b> Bitácoras de atención individual</b> </legend><br /><br /><br />
+
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Fecha:</label>
+                            <div class="col-md-4">
+                                <div id="Fecha"></div>
+                            </div>
+                            <label class="col-md-1 control-label">Sesión:</label>
+                            <div class="col-md-4">
+                                <input name="first_name" placeholder="" class="form-control" type="text" disabled>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Segumiento</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <textarea style="text-align: center;" rows="4" cols="55" name="website" placeholder="" class="form-control" disabled></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Responsable a cargo</label>
+                            <div class="col-md-9 inputGroupContainer">
+                                <div class="input-group">
+                                    <input name="first_name" placeholder="" class="form-control" type="text" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Cargo</label>
+                            <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                    <input name="first_name" placeholder="" class="form-control" type="text" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div><!---------------------seguimiento------------------------------------>
+            <!---------------------Adjuntos------------------------------------>
+            <div id="A" class="tabcontent">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Consentimiento informado</label>
+                    <input type="file" name="fileToUpload" id="fileToUpload" disabled>
+                    <input type="submit" value="Subir imagen" name="Subir" disabled>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Referencias</label>
+                    <input type="file" name="fileToUpload" id="fileToUpload" multiple disabled>
+                    <input type="submit" value="Subir imágenes" name="Subir" disabled>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Otro</label>
+                    <input type="file" name="fileToUpload" id="fileToUpload" disabled>
+                    <input type="submit" value="Subir imagen" name="Subir" disabled>
+                </div>
+            </div><!--------------------Fin adjutos--------------------------------->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="js/custom.js"></script>
+    <script src="~/Scripts/MenuIF.js"></script>
+    <script src="~/Scripts/Hora.js"></script>
+    <script src="~/Scripts/Tab.js"></script>
+
+</body>
+</html>
+

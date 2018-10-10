@@ -1,0 +1,29 @@
+C:\Users\ingri\OneDrive\Ingenieria\BackEnd\BackEnd\obj\Debug\BackEnd.csprojAssemblyReference.cache
+C:\Users\ingri\OneDrive\Ingenieria\BackEnd\BackEnd\obj\Debug\BackEnd.csproj.CoreCompileInputs.cache
+C:\Users\ingri\OneDrive\Ingenieria\BackEnd\BackEnd\bin\Debug\BackEnd.dll
+C:\Users\ingri\OneDrive\Ingenieria\BackEnd\BackEnd\bin\Debug\BackEnd.pdb
+C:\Users\ingri\OneDrive\Ingenieria\BackEnd\BackEnd\obj\Debug\BackEnd.dll
+C:\Users\ingri\OneDrive\Ingenieria\BackEnd\BackEnd\obj\Debug\BackEnd.pdb
+C:\Users\Usuario\Desktop\Sigeca1\Sigeca1\BackEnd\bin\Debug\BackEnd.dll
+C:\Users\Usuario\Desktop\Sigeca1\Sigeca1\BackEnd\bin\Debug\BackEnd.pdb
+C:\Users\Usuario\Desktop\Sigeca1\Sigeca1\BackEnd\obj\Debug\BackEnd.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\Sigeca1\Sigeca1\BackEnd\obj\Debug\BackEnd.dll
+C:\Users\Usuario\Desktop\Sigeca1\Sigeca1\BackEnd\obj\Debug\BackEnd.pdb
+C:\Users\Usuario\Desktop\SigecaVersionFinal\Sigeca1\BackEnd\bin\Debug\BackEnd.dll
+C:\Users\Usuario\Desktop\SigecaVersionFinal\Sigeca1\BackEnd\bin\Debug\BackEnd.pdb
+C:\Users\Usuario\Desktop\SigecaVersionFinal\Sigeca1\BackEnd\obj\Debug\BackEnd.csprojAssemblyReference.cache
+C:\Users\Usuario\Desktop\SigecaVersionFinal\Sigeca1\BackEnd\obj\Debug\BackEnd.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\SigecaVersionFinal\Sigeca1\BackEnd\obj\Debug\BackEnd.dll
+C:\Users\Usuario\Desktop\SigecaVersionFinal\Sigeca1\BackEnd\obj\Debug\BackEnd.pdb
+C:\Users\Usuario\Desktop\Sigeca (1)\MenuAdministrador\BackEnd\bin\Debug\BackEnd.dll
+C:\Users\Usuario\Desktop\Sigeca (1)\MenuAdministrador\BackEnd\bin\Debug\BackEnd.pdb
+C:\Users\Usuario\Desktop\Sigeca (1)\MenuAdministrador\BackEnd\obj\Debug\BackEnd.csprojAssemblyReference.cache
+C:\Users\Usuario\Desktop\Sigeca (1)\MenuAdministrador\BackEnd\obj\Debug\BackEnd.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\Sigeca (1)\MenuAdministrador\BackEnd\obj\Debug\BackEnd.dll
+C:\Users\Usuario\Desktop\Sigeca (1)\MenuAdministrador\BackEnd\obj\Debug\BackEnd.pdb
+C:\Users\Usuario\Desktop\SigecaPresentación\MenuAdministrador\BackEnd\bin\Debug\BackEnd.dll
+C:\Users\Usuario\Desktop\SigecaPresentación\MenuAdministrador\BackEnd\bin\Debug\BackEnd.pdb
+C:\Users\Usuario\Desktop\SigecaPresentación\MenuAdministrador\BackEnd\obj\Debug\BackEnd.csprojAssemblyReference.cache
+C:\Users\Usuario\Desktop\SigecaPresentación\MenuAdministrador\BackEnd\obj\Debug\BackEnd.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\SigecaPresentación\MenuAdministrador\BackEnd\obj\Debug\BackEnd.dll
+C:\Users\Usuario\Desktop\SigecaPresentación\MenuAdministrador\BackEnd\obj\Debug\BackEnd.pdb

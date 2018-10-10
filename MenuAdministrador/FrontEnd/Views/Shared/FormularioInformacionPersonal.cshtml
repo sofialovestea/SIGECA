@@ -1,0 +1,297 @@
+﻿@{
+    ViewBag.Title = "FormularioInformacionPersonal";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>S I G E C A</title>
+    <!-- BOOTSTRAP STYLES-->
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="~/css/font-awesome.css" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+    <link href="~/css/custom.css" rel="stylesheet" />
+    <!-- CSS MENU-->
+    <link href="~/Content/MenuTab.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <!--funcionaldad múltiple selelect-->
+    <link href="~/Content/multiple-select.css" rel="stylesheet" />
+</head>
+<body>
+    <form class="well form-horizontal" action=" " method="post" id="contact_form">
+
+        <fieldset>
+            <legend align="center"> <b> Información personal </b> </legend><br /><br /><br />
+            <div class="form-group">
+                <label class="col-md-1 control-label">Nombre completo<font color="red">*</font></label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="first_name" placeholder="Nombre completo" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-1 control-label">Tipo de identificación<font color="red">*</font></label>
+                <div class="col-md-2 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select name="state" class="form-control selectpicker">
+                            <option value="cedula ">Cédula</option>
+                            <option value="pasaporte">Pasaporte</option>
+                            <option value="indocumentado">Indocumentado</option>
+                        </select>
+                    </div>
+                </div>
+                <label class="col-md-1 control-label">Identificación</label>
+                <div class="col-md-2 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-info-sign"></i></span>
+                        <input name="first_name" placeholder="" class="form-control" type="text">
+                    </div>
+                </div>
+                <label class="col-md-1 control-label">Edad</label>
+                <div class="col-md-1 ">
+                    <div class="input-group">
+                        <input name="email" placeholder="Edad" class="form-control" type="text" disabled>
+                    </div>
+                </div>
+                <label class="col-md-1 control-label">Fecha de nacimiento<font color="red">*</font></label>
+                <div class="col-md-2 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input name="phone" placeholder="" class="form-control" type="date">
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label class="col-md-1 control-label">Teléfono1<font color="red">*</font></label>
+                <div class="col-md-2 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                        <input name="phone" placeholder="5555-12121" class="form-control" type="text">
+                    </div>
+                </div>
+                <label class="col-md-1 control-label">Teléfono2</label>
+                <div class="col-md-2 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                        <input name="phone" placeholder="5555-12121" class="form-control" type="text" required>
+                    </div>
+                </div>
+                <label class="col-md-1 control-label">Teléfono3</label>
+                <div class="col-md-2 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                        <input name="phone" placeholder="5555-12121" class="form-control" type="text">
+                    </div>
+                </div>
+                <label class="col-md-1 control-label">Sexo<font color="red">*</font></label>
+                <div class="col-md-1">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="hosting" value="femenino" />Femenino
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="hosting" value="masculino" />Masculino
+                        </label>
+                    </div>
+
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="hosting" value="otro" />Otro
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-1 control-label">¿Se puede dejar un mensaje?<font color="red">*</font></label>
+                <div class="col-md-1">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="hosting" value="si" />Sí
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="hosting" value="no" />No
+                        </label>
+                    </div>
+                </div>
+                <label class="col-md-1 control-label">¿Con quién?</label>
+                <div class="col-md-2 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        <textarea style="text-align: center;" rows="4" cols="55" name="address" placeholder="Nombre y teléfono" class="form-control"></textarea>
+                    </div>
+                </div>
+                <label class="col-md-1 control-label">Escolaridad<font color="red">*</font></label>
+                <div class="col-md-2 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select name="state" class="form-control selectpicker">
+                            <option value="Ninguna">Ninguna</option>
+                            <option value="Primaria completa">Primaria completa</option>
+                            <option value="Primaria incompleta">Primaria incompleta</option>
+                            <option value="Noveno completo">Noveno completo</option>
+                            <option value="Noveno incompleto">Noveno incompleto</option>
+                            <option value="Bachillerato incompleto">Bachillerato incompleto</option>
+                            <option value="Bachillerato completo">Bachillerato completo</option>
+                            <option value="Universidad incompleta">Universidad incompleta</option>
+                            <option value="Universidad completa">Universidad completa</option>
+                            <option value="Educación técnica">Educación técnica</option>
+                        </select>
+                    </div>
+                </div>
+                <label class="col-md-1 control-label">Ocupación<font color="red">*</font></label>
+                <div class="col-md-3 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select name="state" class="form-control selectpicker">
+                            <option value="Ama de casa">Ama de casa</option>
+                            <option value="Desempleada">Desempleada</option>
+                            <option value="Pensionada">Pensionada</option>
+                            <option value="Profesional">Profesional</option>
+                            <option value="Trabajo formal">Trabajo formal</option>
+                            <option value="Trabajo informal">Trabajo informal</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Lugar de trabajo y dirección exacta<font color="red">*</font></label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        <textarea style="text-align: center;" rows="2" cols="55" name="website" placeholder="Lugar de trabajo y dirección exacta" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-1 control-label">Estado civil<font color="red">*</font></label>
+                <div class="col-md-2 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select name="state" class="form-control selectpicker">
+                            <option value="Casada">Casada</option>
+                            <option value="Soltera">Soltera</option>
+                            <option value="Unión de hecho">Unión de hecho</option>
+                            <option value="Separación de hecho">Separación de hecho</option>
+                            <option value="Separación judicial">Separación judicial</option>
+                            <option value="Divorciada">Divorciada</option>
+                            <option value="Viuda">Viuda</option>
+                        </select>
+                    </div>
+                </div>
+                <label class="col-md-1 control-label">Nacionalidad<font color="red">*</font></label>
+                <div class="col-md-3 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select name="state" class="form-control selectpicker">
+                            <option value="Costarricense">Costarricense</option>
+                            <option value="Nicaragüense">Nicaragüense</option>
+                            <option value="Colombiana">Colombiana</option>
+                            <option value="Panameña">Panameña</option>
+                            <option value="Salvadoreña">Salvadoreña</option>
+                            <option value="Cubana">Cubana</option>
+                            <option value="Venezolana">Venezolana</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                </div>
+                <label class="col-md-1 control-label">Distrito<font color="red">*</font></label>
+                <div class="col-md-2 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select name="state" class="form-control selectpicker">
+                            <option value="Costarricense">Alajuela</option>
+                            <option value="Nicaragüense">San José</option>
+                            <option value="Colombiana">Carrizal</option>
+                            <option value="Panameña">San Antonio</option>
+                            <option value="Salvadoreña">Guácima</option>
+                            <option value="Cubana">San Isidro</option>
+                            <option value="Venezolana">Sabanilla</option>
+                            <option value="Otro">San Rafael</option>
+                            <option value="Otro">Río segundo</option>
+                            <option value="Otro">Desamparados</option>
+                            <option value="Otro">Turrúcares</option>
+                            <option value="Otro">Tambor</option>
+                            <option value="Otro">La Garita</option>
+                            <option value="Otro">Sarapiquí</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-1 control-label">¿Tiene hijos (as)?<font color="red">*</font></label>
+                <div class="col-md-2">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="hosting" value="si" />Sí
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="hosting" value="no" />No
+                        </label>
+                    </div>
+                </div>
+                <label class="col-md-2 control-label">Número de hijos (as) y edades</label>
+                <div class="col-md-5 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        <input name="city" placeholder="Número de hijos(as) y edades" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Dirección de la vivienda<font color="red">*</font></label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <textarea style="text-align: center;" rows="2" cols="55" name="website" placeholder="Dirección de la vivienda" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Dirección en la que ocurrió la situación de violencia</label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        <textarea style="text-align: center;" rows="2" cols="55" name="website" placeholder="Dirección en la que ocurrió la situación de violencia" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Personas con las que vive<font color="red">*</font></label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        <textarea style="text-align: center;" rows="2" cols="55" name="website" placeholder="Personas con las que vive" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-success" role="alert" id="success_message">¡Datos correctos!<i class="glyphicon glyphicon-ok"></i> Información guardada.</div>
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <button type="submit" class="Boton">Guardar</button>
+                </div>
+            </div>
+
+        </fieldset>
+
+    </form>
+
+</body>
+</html>

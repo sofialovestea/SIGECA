@@ -1,0 +1,69 @@
+﻿@model FrontEnd.Models.UserViewModel
+@{
+    Layout = null;
+}
+<!doctype html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+
+    <title>Sigeca</title>
+    <style>
+
+    </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Sigeca </title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+
+<body>
+
+    <div id="login-form">
+
+        <h1>Login</h1>
+
+        <fieldset>
+
+            <form action="javascript:void(0);" method="get">
+
+                <input type="email" required value="Email" onBlur="if(this.value=='')this.value='Email'" onFocus="if(this.value=='Email')this.value='' "> <!-- JS because of IE support; better: placeholder="Email" -->
+
+                <input type="password" required value="Password" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' "> <!-- JS because of IE support; better: placeholder="Password" -->
+
+                <input type="submit" value="Login">
+
+                <footer class="clearfix">
+
+                    <p><span class="info">?</span><a href="#">Forgot Password</a></p>
+
+                </footer>
+
+            </form>
+
+        </fieldset>
+
+    </div> <!-- end login-form -->
+    <!--<script src="~/Scripts/jquery-3.3.1.min.js"></script>-->
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Sigeca</p>
+        </footer>
+    </div>
+</body>
+</html>

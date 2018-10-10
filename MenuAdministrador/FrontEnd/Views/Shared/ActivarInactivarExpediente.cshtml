@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewBag.Title = "ActivarInactivarExpediente";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>S I G E C A</title>
+    <!-- BOOTSTRAP STYLES-->
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="~/css/font-awesome.css" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+    <link href="~/css/custom.css" rel="stylesheet" />
+    <!-- CSS MENU-->
+    <link href="~/Content/MenuTab.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <!--funcionaldad múltiple selelect-->
+    <link href="~/Content/multiple-select.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom:auto">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"> SIGECA </a>
+
+
+                <div style="color:white; background:gray; padding: 15px 50px 5px 50px; float:right; font-size:15px;">
+                    <i class="glyphicon glyphicon-user"> SIGECA </i>
+                    <div id="Fecha"></div>
+                    <a href="#" class="btn-dark">Salir</a>
+                </div>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li class="text-center">
+                        <!-- tamaño de iconos es 32x32 se descargan en flat icon -->
+                        <img src="/Imagenes/Muni.jpg" class="user-image img-responsive" />
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Menu", "Shared")"> <i class="menu-fontStyle"></i> <img src="/Imagenes/home.png" /> Inicio  </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("CrearExpediente", "Shared")"> <i class="menu-fontStyle"></i> <img src="/Imagenes/consultarExpediente.png" />Crear expediente</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("EditarExpediente", "Shared")"> <i class="menu-fontStyle"></i> <img src="/Imagenes/user.png" />Editar expediente</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("ActivarInactivarExpediente", "Shared")"> <i class="menu-fontStyle"></i> <img src="/Imagenes/user.png" /> Activar/ inactivar</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("ConsultarExpediente", "Shared")"> <i class="menu-fontStyle"></i> <img src="/Imagenes/consultarExpediente.png" /> Consultar Expediente </a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </nav>
+        <div id="page-wrapper">
+            <form class="well form-horizontal" action=" " method="post" id="contact_form">
+
+                <fieldset>
+                    <legend align="center"> <b> Activar/Inactivar expediente</b> </legend><br /><br /><br />
+                    <div class="form-group">
+                       <label class="col-md-1 control-label">Tipo de identificación<font color="red">*</font></label>
+                            <div class="col-md-3 selectContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                    <select name="state" class="form-control selectpicker">
+                                        <option value="cedula ">Cédula</option>
+                                        <option value="pasaporte">Pasaporte</option>
+                                        <option value="indocumentado">Indocumentado</option>
+                                    </select>
+                                </div>
+                            </div>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="first_name" placeholder="Identificación" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"></label>
+                        <div class="col-md-4">
+                            <button type="submit" class="Boton">Consultar</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Expediente a activar/inactivar</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <input name="first_name" placeholder="Identificación" class="form-control" type="text" disabled>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"></label>
+                        <div class="col-md-4">
+                            <button type="submit" class="Boton">Activar/Inactivar</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+
+
+
+
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="js/custom.js"></script>
+    <!------HORA SCRIPT-------->
+    <script src="~/Scripts/Hora.js"></script>
+</body>
+</html>
+
+
+
+
