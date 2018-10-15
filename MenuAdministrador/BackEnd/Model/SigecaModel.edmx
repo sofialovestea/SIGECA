@@ -1,0 +1,1615 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SigecaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bitacora">
+          <Key>
+            <PropertyRef Name="PK_Bitacora" />
+          </Key>
+          <Property Name="PK_Bitacora" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_Bitacora_Usuario" Type="int" Nullable="false" />
+          <Property Name="movimiento" Type="nvarchar(max)" />
+          <Property Name="fecha" Type="date" />
+        </EntityType>
+        <EntityType Name="Cita">
+          <Key>
+            <PropertyRef Name="PK_Cita" />
+          </Key>
+          <Property Name="PK_Cita" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_Cita_Persona" Type="int" Nullable="false" />
+          <Property Name="FK_Cita_Estado" Type="int" />
+          <Property Name="fechaSolicitud" Type="date" Nullable="false" />
+          <Property Name="observaciones" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Contacto">
+          <Key>
+            <PropertyRef Name="PK_Telefono" />
+          </Key>
+          <Property Name="PK_Telefono" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_Telefono_Persona" Type="int" />
+          <Property Name="FK_Telefono_Usuario" Type="int" />
+          <Property Name="tipo" Type="nvarchar(max)" />
+          <Property Name="numero" Type="int" />
+          <Property Name="correo" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="DocumentoAdjunto">
+          <Key>
+            <PropertyRef Name="PK_DocAdjunto" />
+          </Key>
+          <Property Name="PK_DocAdjunto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_DocAdjunto_Expediente" Type="int" Nullable="false" />
+          <Property Name="documento" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Expediente">
+          <Key>
+            <PropertyRef Name="PK_Expediente" />
+          </Key>
+          <Property Name="PK_Expediente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_Expediente_Cita" Type="int" />
+          <Property Name="FK_Expediente_Usuario" Type="int" Nullable="false" />
+          <Property Name="FK_Expediente_Estado" Type="int" />
+          <Property Name="FK_Exp_AtencionBrindada" Type="int" />
+          <Property Name="FK_Exp_Procedimientos" Type="int" />
+          <Property Name="intervencionRealizada" Type="nvarchar(max)" />
+          <Property Name="valoracion" Type="nvarchar(max)" />
+          <Property Name="secuelas" Type="nvarchar(max)" />
+          <Property Name="observaciones" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Implicado">
+          <Key>
+            <PropertyRef Name="PK_Implicado" />
+          </Key>
+          <Property Name="PK_Implicado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_Implicado_Persona" Type="int" Nullable="false" />
+          <Property Name="FK_Implicado_Tipo" Type="int" Nullable="false" />
+          <Property Name="FK_Implicado_Expediente" Type="int" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="PK_Persona" />
+          </Key>
+          <Property Name="PK_Persona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_Persona_Escolaridad" Type="int" />
+          <Property Name="FK_Persona_Sexo" Type="int" />
+          <Property Name="FK_Persona_Ocupacion" Type="int" />
+          <Property Name="FK_Persona_EstadoCivil" Type="int" />
+          <Property Name="FK_Persona_Nacionalidad" Type="int" Nullable="false" />
+          <Property Name="FK_Persona_Distrito" Type="int" />
+          <Property Name="identificacion" Type="int" />
+          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="date" />
+          <Property Name="numHijos" Type="int" />
+          <Property Name="lugarTrabajo" Type="nvarchar(max)" />
+          <Property Name="direccionVivienda" Type="nvarchar(max)" />
+          <Property Name="FK_Persona_Parentesco" Type="int" />
+        </EntityType>
+        <EntityType Name="ProcedimientoLegal">
+          <Key>
+            <PropertyRef Name="PK_Procedimiento" />
+          </Key>
+          <Property Name="PK_Procedimiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_ProcedimientoRealizado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="PK_Rol" />
+          </Key>
+          <Property Name="PK_Rol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Sigeca.dbo.RolUsuario' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="RolUsuario">
+          <Key>
+            <PropertyRef Name="FK_Rol_Usuario" />
+            <PropertyRef Name="FK_Rol" />
+          </Key>
+          <Property Name="FK_Rol_Usuario" Type="int" Nullable="false" />
+          <Property Name="FK_Rol" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Seguimiento">
+          <Key>
+            <PropertyRef Name="PK_Seguimiento" />
+          </Key>
+          <Property Name="PK_Seguimiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PK_Seguimiento_Cita" Type="int" Nullable="false" />
+          <Property Name="PK_Seguimiento_Expediente" Type="int" />
+          <Property Name="FK_Seg_UsuarioAsignado" Type="int" Nullable="false" />
+          <Property Name="FK_Seg_UsuarioAsignador" Type="int" />
+          <Property Name="FK_Seg_UsuarioCancela" Type="int" />
+          <Property Name="ResumenIntervencion" Type="nvarchar(max)" />
+          <Property Name="fechaCita" Type="date" Nullable="false" />
+          <Property Name="hora" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="observaciones" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TablaGeneral">
+          <Key>
+            <PropertyRef Name="PK_TablaGeneral" />
+          </Key>
+          <Property Name="PK_TablaGeneral" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tabla" Type="nvarchar(max)" />
+          <Property Name="campo" Type="nvarchar(max)" />
+          <Property Name="descripcion" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TipoDemanda">
+          <Key>
+            <PropertyRef Name="PK_TipoDemanda" />
+          </Key>
+          <Property Name="PK_TipoDemanda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_TipoDemanda_Expediente" Type="int" Nullable="false" />
+          <Property Name="FK_TipoDemanda_tipo" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="PK_Usuario" />
+          </Key>
+          <Property Name="PK_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_Usuario_Estado" Type="int" Nullable="false" />
+          <Property Name="correoInstitucional" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Bitacora_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Bitacora" Type="Self.Bitacora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="PK_Usuario" />
+            </Principal>
+            <Dependent Role="Bitacora">
+              <PropertyRef Name="FK_Bitacora_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cita_Persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="PK_Persona" />
+            </Principal>
+            <Dependent Role="Cita">
+              <PropertyRef Name="FK_Cita_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cita_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="0..1" />
+          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Cita">
+              <PropertyRef Name="FK_Cita_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacto_Persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Contacto" Type="Self.Contacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="PK_Persona" />
+            </Principal>
+            <Dependent Role="Contacto">
+              <PropertyRef Name="FK_Telefono_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacto_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Contacto" Type="Self.Contacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="PK_Usuario" />
+            </Principal>
+            <Dependent Role="Contacto">
+              <PropertyRef Name="FK_Telefono_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentoAdjunto_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="1" />
+          <End Role="DocumentoAdjunto" Type="Self.DocumentoAdjunto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="PK_Expediente" />
+            </Principal>
+            <Dependent Role="DocumentoAdjunto">
+              <PropertyRef Name="FK_DocAdjunto_Expediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expediente_Cita">
+          <End Role="Cita" Type="Self.Cita" Multiplicity="0..1" />
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cita">
+              <PropertyRef Name="PK_Cita" />
+            </Principal>
+            <Dependent Role="Expediente">
+              <PropertyRef Name="FK_Expediente_Cita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expediente_ProcedimientoLegal">
+          <End Role="ProcedimientoLegal" Type="Self.ProcedimientoLegal" Multiplicity="0..1" />
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcedimientoLegal">
+              <PropertyRef Name="PK_Procedimiento" />
+            </Principal>
+            <Dependent Role="Expediente">
+              <PropertyRef Name="FK_Exp_Procedimientos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expediente_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="0..1" />
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Expediente">
+              <PropertyRef Name="FK_Expediente_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expediente_TablaGeneral1">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="0..1" />
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Expediente">
+              <PropertyRef Name="FK_Exp_AtencionBrindada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expediente_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="PK_Usuario" />
+            </Principal>
+            <Dependent Role="Expediente">
+              <PropertyRef Name="FK_Expediente_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Implicado_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="0..1" />
+          <End Role="Implicado" Type="Self.Implicado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="PK_Expediente" />
+            </Principal>
+            <Dependent Role="Implicado">
+              <PropertyRef Name="FK_Implicado_Expediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Implicado_Persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Implicado" Type="Self.Implicado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="PK_Persona" />
+            </Principal>
+            <Dependent Role="Implicado">
+              <PropertyRef Name="FK_Implicado_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Implicado_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="1" />
+          <End Role="Implicado" Type="Self.Implicado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Implicado">
+              <PropertyRef Name="FK_Implicado_Tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerDistrito_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="FK_Persona_Distrito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerEscolaridad_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="FK_Persona_Escolaridad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerEstadoCivil_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="FK_Persona_EstadoCivil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerNacionalidad_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="FK_Persona_Nacionalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerOcupacion_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="FK_Persona_Ocupacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerParentesco_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="FK_Persona_Parentesco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerSexo_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="FK_Persona_Sexo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProcedimientoLegal_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="1" />
+          <End Role="ProcedimientoLegal" Type="Self.ProcedimientoLegal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="ProcedimientoLegal">
+              <PropertyRef Name="FK_ProcedimientoRealizado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolUsuario_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="RolUsuario" Type="Self.RolUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="PK_Rol" />
+            </Principal>
+            <Dependent Role="RolUsuario">
+              <PropertyRef Name="FK_Rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolUsuario_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="RolUsuario" Type="Self.RolUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="PK_Usuario" />
+            </Principal>
+            <Dependent Role="RolUsuario">
+              <PropertyRef Name="FK_Rol_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seguimiento_Cita">
+          <End Role="Cita" Type="Self.Cita" Multiplicity="1" />
+          <End Role="Seguimiento" Type="Self.Seguimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cita">
+              <PropertyRef Name="PK_Cita" />
+            </Principal>
+            <Dependent Role="Seguimiento">
+              <PropertyRef Name="PK_Seguimiento_Cita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seguimiento_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="0..1" />
+          <End Role="Seguimiento" Type="Self.Seguimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="PK_Expediente" />
+            </Principal>
+            <Dependent Role="Seguimiento">
+              <PropertyRef Name="PK_Seguimiento_Expediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seguimiento_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Seguimiento" Type="Self.Seguimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="PK_Usuario" />
+            </Principal>
+            <Dependent Role="Seguimiento">
+              <PropertyRef Name="FK_Seg_UsuarioAsignado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seguimiento_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Seguimiento" Type="Self.Seguimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="PK_Usuario" />
+            </Principal>
+            <Dependent Role="Seguimiento">
+              <PropertyRef Name="FK_Seg_UsuarioAsignador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seguimiento_Usuario2">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Seguimiento" Type="Self.Seguimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="PK_Usuario" />
+            </Principal>
+            <Dependent Role="Seguimiento">
+              <PropertyRef Name="FK_Seg_UsuarioCancela" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TipoDemanda_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="1" />
+          <End Role="TipoDemanda" Type="Self.TipoDemanda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="PK_Expediente" />
+            </Principal>
+            <Dependent Role="TipoDemanda">
+              <PropertyRef Name="FK_TipoDemanda_Expediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TipoDemanda_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="1" />
+          <End Role="TipoDemanda" Type="Self.TipoDemanda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="TipoDemanda">
+              <PropertyRef Name="FK_TipoDemanda_tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="FK_Usuario_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SigecaModelStoreContainer">
+          <EntitySet Name="Bitacora" EntityType="Self.Bitacora" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cita" EntityType="Self.Cita" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contacto" EntityType="Self.Contacto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentoAdjunto" EntityType="Self.DocumentoAdjunto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Expediente" EntityType="Self.Expediente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Implicado" EntityType="Self.Implicado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProcedimientoLegal" EntityType="Self.ProcedimientoLegal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seguimiento" EntityType="Self.Seguimiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TablaGeneral" EntityType="Self.TablaGeneral" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoDemanda" EntityType="Self.TipoDemanda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RolUsuario" EntityType="Self.RolUsuario" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [RolUsuario].[FK_Rol_Usuario] AS [FK_Rol_Usuario], 
+    [RolUsuario].[FK_Rol] AS [FK_Rol]
+    FROM [dbo].[RolUsuario] AS [RolUsuario]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Bitacora_Usuario" Association="Self.FK_Bitacora_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Bitacora" EntitySet="Bitacora" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cita_Persona" Association="Self.FK_Cita_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Cita" EntitySet="Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cita_TablaGeneral" Association="Self.FK_Cita_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Cita" EntitySet="Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacto_Persona" Association="Self.FK_Contacto_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Contacto" EntitySet="Contacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacto_Usuario" Association="Self.FK_Contacto_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Contacto" EntitySet="Contacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentoAdjunto_Expediente" Association="Self.FK_DocumentoAdjunto_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="DocumentoAdjunto" EntitySet="DocumentoAdjunto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expediente_Cita" Association="Self.FK_Expediente_Cita">
+            <End Role="Cita" EntitySet="Cita" />
+            <End Role="Expediente" EntitySet="Expediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expediente_ProcedimientoLegal" Association="Self.FK_Expediente_ProcedimientoLegal">
+            <End Role="ProcedimientoLegal" EntitySet="ProcedimientoLegal" />
+            <End Role="Expediente" EntitySet="Expediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expediente_TablaGeneral" Association="Self.FK_Expediente_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Expediente" EntitySet="Expediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expediente_TablaGeneral1" Association="Self.FK_Expediente_TablaGeneral1">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Expediente" EntitySet="Expediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expediente_Usuario" Association="Self.FK_Expediente_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Expediente" EntitySet="Expediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Implicado_Expediente" Association="Self.FK_Implicado_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Implicado" EntitySet="Implicado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Implicado_Persona" Association="Self.FK_Implicado_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Implicado" EntitySet="Implicado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Implicado_TablaGeneral" Association="Self.FK_Implicado_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Implicado" EntitySet="Implicado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerDistrito_TablaGeneral" Association="Self.FK_PerDistrito_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerEscolaridad_TablaGeneral" Association="Self.FK_PerEscolaridad_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerEstadoCivil_TablaGeneral" Association="Self.FK_PerEstadoCivil_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerNacionalidad_TablaGeneral" Association="Self.FK_PerNacionalidad_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerOcupacion_TablaGeneral" Association="Self.FK_PerOcupacion_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerParentesco_TablaGeneral" Association="Self.FK_PerParentesco_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerSexo_TablaGeneral" Association="Self.FK_PerSexo_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProcedimientoLegal_TablaGeneral" Association="Self.FK_ProcedimientoLegal_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="ProcedimientoLegal" EntitySet="ProcedimientoLegal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolUsuario_Rol" Association="Self.FK_RolUsuario_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="RolUsuario" EntitySet="RolUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolUsuario_Usuario" Association="Self.FK_RolUsuario_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="RolUsuario" EntitySet="RolUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seguimiento_Cita" Association="Self.FK_Seguimiento_Cita">
+            <End Role="Cita" EntitySet="Cita" />
+            <End Role="Seguimiento" EntitySet="Seguimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seguimiento_Expediente" Association="Self.FK_Seguimiento_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Seguimiento" EntitySet="Seguimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seguimiento_Usuario" Association="Self.FK_Seguimiento_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Seguimiento" EntitySet="Seguimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seguimiento_Usuario1" Association="Self.FK_Seguimiento_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Seguimiento" EntitySet="Seguimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seguimiento_Usuario2" Association="Self.FK_Seguimiento_Usuario2">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Seguimiento" EntitySet="Seguimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TipoDemanda_Expediente" Association="Self.FK_TipoDemanda_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="TipoDemanda" EntitySet="TipoDemanda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TipoDemanda_TablaGeneral" Association="Self.FK_TipoDemanda_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="TipoDemanda" EntitySet="TipoDemanda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_TablaGeneral" Association="Self.FK_Usuario_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SigecaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bitacora">
+          <Key>
+            <PropertyRef Name="PK_Bitacora" />
+          </Key>
+          <Property Name="PK_Bitacora" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Bitacora_Usuario" Type="Int32" Nullable="false" />
+          <Property Name="movimiento" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Bitacora_Usuario" FromRole="Bitacora" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Cita">
+          <Key>
+            <PropertyRef Name="PK_Cita" />
+          </Key>
+          <Property Name="PK_Cita" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Cita_Persona" Type="Int32" Nullable="false" />
+          <Property Name="FK_Cita_Estado" Type="Int32" />
+          <Property Name="fechaSolicitud" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_Cita_Persona" FromRole="Cita" ToRole="Persona" />
+          <NavigationProperty Name="TablaGeneral" Relationship="Self.FK_Cita_TablaGeneral" FromRole="Cita" ToRole="TablaGeneral" />
+          <NavigationProperty Name="Expediente" Relationship="Self.FK_Expediente_Cita" FromRole="Cita" ToRole="Expediente" />
+          <NavigationProperty Name="Seguimiento" Relationship="Self.FK_Seguimiento_Cita" FromRole="Cita" ToRole="Seguimiento" />
+        </EntityType>
+        <EntityType Name="Contacto">
+          <Key>
+            <PropertyRef Name="PK_Telefono" />
+          </Key>
+          <Property Name="PK_Telefono" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Telefono_Persona" Type="Int32" />
+          <Property Name="FK_Telefono_Usuario" Type="Int32" />
+          <Property Name="tipo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="numero" Type="Int32" />
+          <Property Name="correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_Contacto_Persona" FromRole="Contacto" ToRole="Persona" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Contacto_Usuario" FromRole="Contacto" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="DocumentoAdjunto">
+          <Key>
+            <PropertyRef Name="PK_DocAdjunto" />
+          </Key>
+          <Property Name="PK_DocAdjunto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_DocAdjunto_Expediente" Type="Int32" Nullable="false" />
+          <Property Name="documento" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Expediente" Relationship="Self.FK_DocumentoAdjunto_Expediente" FromRole="DocumentoAdjunto" ToRole="Expediente" />
+        </EntityType>
+        <EntityType Name="Expediente">
+          <Key>
+            <PropertyRef Name="PK_Expediente" />
+          </Key>
+          <Property Name="PK_Expediente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Expediente_Cita" Type="Int32" />
+          <Property Name="FK_Expediente_Usuario" Type="Int32" Nullable="false" />
+          <Property Name="FK_Expediente_Estado" Type="Int32" />
+          <Property Name="FK_Exp_AtencionBrindada" Type="Int32" />
+          <Property Name="FK_Exp_Procedimientos" Type="Int32" />
+          <Property Name="intervencionRealizada" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="valoracion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="secuelas" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cita" Relationship="Self.FK_Expediente_Cita" FromRole="Expediente" ToRole="Cita" />
+          <NavigationProperty Name="DocumentoAdjunto" Relationship="Self.FK_DocumentoAdjunto_Expediente" FromRole="Expediente" ToRole="DocumentoAdjunto" />
+          <NavigationProperty Name="ProcedimientoLegal" Relationship="Self.FK_Expediente_ProcedimientoLegal" FromRole="Expediente" ToRole="ProcedimientoLegal" />
+          <NavigationProperty Name="TablaGeneral" Relationship="Self.FK_Expediente_TablaGeneral" FromRole="Expediente" ToRole="TablaGeneral" />
+          <NavigationProperty Name="TablaGeneral1" Relationship="Self.FK_Expediente_TablaGeneral1" FromRole="Expediente" ToRole="TablaGeneral" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Expediente_Usuario" FromRole="Expediente" ToRole="Usuario" />
+          <NavigationProperty Name="Implicado" Relationship="Self.FK_Implicado_Expediente" FromRole="Expediente" ToRole="Implicado" />
+          <NavigationProperty Name="Seguimiento" Relationship="Self.FK_Seguimiento_Expediente" FromRole="Expediente" ToRole="Seguimiento" />
+          <NavigationProperty Name="TipoDemanda" Relationship="Self.FK_TipoDemanda_Expediente" FromRole="Expediente" ToRole="TipoDemanda" />
+        </EntityType>
+        <EntityType Name="Implicado">
+          <Key>
+            <PropertyRef Name="PK_Implicado" />
+          </Key>
+          <Property Name="PK_Implicado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Implicado_Persona" Type="Int32" Nullable="false" />
+          <Property Name="FK_Implicado_Tipo" Type="Int32" Nullable="false" />
+          <Property Name="FK_Implicado_Expediente" Type="Int32" />
+          <NavigationProperty Name="Expediente" Relationship="Self.FK_Implicado_Expediente" FromRole="Implicado" ToRole="Expediente" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_Implicado_Persona" FromRole="Implicado" ToRole="Persona" />
+          <NavigationProperty Name="TablaGeneral" Relationship="Self.FK_Implicado_TablaGeneral" FromRole="Implicado" ToRole="TablaGeneral" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="PK_Persona" />
+          </Key>
+          <Property Name="PK_Persona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Persona_Escolaridad" Type="Int32" />
+          <Property Name="FK_Persona_Sexo" Type="Int32" />
+          <Property Name="FK_Persona_Ocupacion" Type="Int32" />
+          <Property Name="FK_Persona_EstadoCivil" Type="Int32" />
+          <Property Name="FK_Persona_Nacionalidad" Type="Int32" Nullable="false" />
+          <Property Name="FK_Persona_Distrito" Type="Int32" />
+          <Property Name="identificacion" Type="Int32" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="numHijos" Type="Int32" />
+          <Property Name="lugarTrabajo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="direccionVivienda" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FK_Persona_Parentesco" Type="Int32" />
+          <NavigationProperty Name="Cita" Relationship="Self.FK_Cita_Persona" FromRole="Persona" ToRole="Cita" />
+          <NavigationProperty Name="Contacto" Relationship="Self.FK_Contacto_Persona" FromRole="Persona" ToRole="Contacto" />
+          <NavigationProperty Name="Implicado" Relationship="Self.FK_Implicado_Persona" FromRole="Persona" ToRole="Implicado" />
+          <NavigationProperty Name="TablaGeneral" Relationship="Self.FK_PerDistrito_TablaGeneral" FromRole="Persona" ToRole="TablaGeneral" />
+          <NavigationProperty Name="TablaGeneral1" Relationship="Self.FK_PerEscolaridad_TablaGeneral" FromRole="Persona" ToRole="TablaGeneral" />
+          <NavigationProperty Name="TablaGeneral2" Relationship="Self.FK_PerEstadoCivil_TablaGeneral" FromRole="Persona" ToRole="TablaGeneral" />
+          <NavigationProperty Name="TablaGeneral3" Relationship="Self.FK_PerNacionalidad_TablaGeneral" FromRole="Persona" ToRole="TablaGeneral" />
+          <NavigationProperty Name="TablaGeneral4" Relationship="Self.FK_PerOcupacion_TablaGeneral" FromRole="Persona" ToRole="TablaGeneral" />
+          <NavigationProperty Name="TablaGeneral5" Relationship="Self.FK_PerParentesco_TablaGeneral" FromRole="Persona" ToRole="TablaGeneral" />
+          <NavigationProperty Name="TablaGeneral6" Relationship="Self.FK_PerSexo_TablaGeneral" FromRole="Persona" ToRole="TablaGeneral" />
+        </EntityType>
+        <EntityType Name="ProcedimientoLegal">
+          <Key>
+            <PropertyRef Name="PK_Procedimiento" />
+          </Key>
+          <Property Name="PK_Procedimiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_ProcedimientoRealizado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Expediente" Relationship="Self.FK_Expediente_ProcedimientoLegal" FromRole="ProcedimientoLegal" ToRole="Expediente" />
+          <NavigationProperty Name="TablaGeneral" Relationship="Self.FK_ProcedimientoLegal_TablaGeneral" FromRole="ProcedimientoLegal" ToRole="TablaGeneral" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="PK_Rol" />
+          </Key>
+          <Property Name="PK_Rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.RolUsuario" FromRole="Rol" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Seguimiento">
+          <Key>
+            <PropertyRef Name="PK_Seguimiento" />
+          </Key>
+          <Property Name="PK_Seguimiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PK_Seguimiento_Cita" Type="Int32" Nullable="false" />
+          <Property Name="PK_Seguimiento_Expediente" Type="Int32" />
+          <Property Name="FK_Seg_UsuarioAsignado" Type="Int32" Nullable="false" />
+          <Property Name="FK_Seg_UsuarioAsignador" Type="Int32" />
+          <Property Name="FK_Seg_UsuarioCancela" Type="Int32" />
+          <Property Name="ResumenIntervencion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fechaCita" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="hora" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cita" Relationship="Self.FK_Seguimiento_Cita" FromRole="Seguimiento" ToRole="Cita" />
+          <NavigationProperty Name="Expediente" Relationship="Self.FK_Seguimiento_Expediente" FromRole="Seguimiento" ToRole="Expediente" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Seguimiento_Usuario" FromRole="Seguimiento" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario1" Relationship="Self.FK_Seguimiento_Usuario1" FromRole="Seguimiento" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario2" Relationship="Self.FK_Seguimiento_Usuario2" FromRole="Seguimiento" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TablaGeneral">
+          <Key>
+            <PropertyRef Name="PK_TablaGeneral" />
+          </Key>
+          <Property Name="PK_TablaGeneral" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tabla" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="campo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cita" Relationship="Self.FK_Cita_TablaGeneral" FromRole="TablaGeneral" ToRole="Cita" />
+          <NavigationProperty Name="Expediente" Relationship="Self.FK_Expediente_TablaGeneral" FromRole="TablaGeneral" ToRole="Expediente" />
+          <NavigationProperty Name="Expediente1" Relationship="Self.FK_Expediente_TablaGeneral1" FromRole="TablaGeneral" ToRole="Expediente" />
+          <NavigationProperty Name="Implicado" Relationship="Self.FK_Implicado_TablaGeneral" FromRole="TablaGeneral" ToRole="Implicado" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_PerDistrito_TablaGeneral" FromRole="TablaGeneral" ToRole="Persona" />
+          <NavigationProperty Name="Persona1" Relationship="Self.FK_PerEscolaridad_TablaGeneral" FromRole="TablaGeneral" ToRole="Persona" />
+          <NavigationProperty Name="Persona2" Relationship="Self.FK_PerEstadoCivil_TablaGeneral" FromRole="TablaGeneral" ToRole="Persona" />
+          <NavigationProperty Name="Persona3" Relationship="Self.FK_PerNacionalidad_TablaGeneral" FromRole="TablaGeneral" ToRole="Persona" />
+          <NavigationProperty Name="Persona4" Relationship="Self.FK_PerOcupacion_TablaGeneral" FromRole="TablaGeneral" ToRole="Persona" />
+          <NavigationProperty Name="Persona5" Relationship="Self.FK_PerParentesco_TablaGeneral" FromRole="TablaGeneral" ToRole="Persona" />
+          <NavigationProperty Name="Persona6" Relationship="Self.FK_PerSexo_TablaGeneral" FromRole="TablaGeneral" ToRole="Persona" />
+          <NavigationProperty Name="ProcedimientoLegal" Relationship="Self.FK_ProcedimientoLegal_TablaGeneral" FromRole="TablaGeneral" ToRole="ProcedimientoLegal" />
+          <NavigationProperty Name="TipoDemanda" Relationship="Self.FK_TipoDemanda_TablaGeneral" FromRole="TablaGeneral" ToRole="TipoDemanda" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Usuario_TablaGeneral" FromRole="TablaGeneral" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="TipoDemanda">
+          <Key>
+            <PropertyRef Name="PK_TipoDemanda" />
+          </Key>
+          <Property Name="PK_TipoDemanda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_TipoDemanda_Expediente" Type="Int32" Nullable="false" />
+          <Property Name="FK_TipoDemanda_tipo" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Expediente" Relationship="Self.FK_TipoDemanda_Expediente" FromRole="TipoDemanda" ToRole="Expediente" />
+          <NavigationProperty Name="TablaGeneral" Relationship="Self.FK_TipoDemanda_TablaGeneral" FromRole="TipoDemanda" ToRole="TablaGeneral" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="PK_Usuario" />
+          </Key>
+          <Property Name="PK_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Usuario_Estado" Type="Int32" Nullable="false" />
+          <Property Name="correoInstitucional" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Bitacora" Relationship="Self.FK_Bitacora_Usuario" FromRole="Usuario" ToRole="Bitacora" />
+          <NavigationProperty Name="Contacto" Relationship="Self.FK_Contacto_Usuario" FromRole="Usuario" ToRole="Contacto" />
+          <NavigationProperty Name="Expediente" Relationship="Self.FK_Expediente_Usuario" FromRole="Usuario" ToRole="Expediente" />
+          <NavigationProperty Name="Seguimiento" Relationship="Self.FK_Seguimiento_Usuario" FromRole="Usuario" ToRole="Seguimiento" />
+          <NavigationProperty Name="Seguimiento1" Relationship="Self.FK_Seguimiento_Usuario1" FromRole="Usuario" ToRole="Seguimiento" />
+          <NavigationProperty Name="Seguimiento2" Relationship="Self.FK_Seguimiento_Usuario2" FromRole="Usuario" ToRole="Seguimiento" />
+          <NavigationProperty Name="TablaGeneral" Relationship="Self.FK_Usuario_TablaGeneral" FromRole="Usuario" ToRole="TablaGeneral" />
+          <NavigationProperty Name="Rol" Relationship="Self.RolUsuario" FromRole="Usuario" ToRole="Rol" />
+        </EntityType>
+        <Association Name="FK_Bitacora_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Bitacora" Type="Self.Bitacora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="PK_Usuario" />
+            </Principal>
+            <Dependent Role="Bitacora">
+              <PropertyRef Name="FK_Bitacora_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cita_Persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="PK_Persona" />
+            </Principal>
+            <Dependent Role="Cita">
+              <PropertyRef Name="FK_Cita_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cita_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="0..1" />
+          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Cita">
+              <PropertyRef Name="FK_Cita_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expediente_Cita">
+          <End Role="Cita" Type="Self.Cita" Multiplicity="0..1" />
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cita">
+              <PropertyRef Name="PK_Cita" />
+            </Principal>
+            <Dependent Role="Expediente">
+              <PropertyRef Name="FK_Expediente_Cita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seguimiento_Cita">
+          <End Role="Cita" Type="Self.Cita" Multiplicity="1" />
+          <End Role="Seguimiento" Type="Self.Seguimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cita">
+              <PropertyRef Name="PK_Cita" />
+            </Principal>
+            <Dependent Role="Seguimiento">
+              <PropertyRef Name="PK_Seguimiento_Cita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacto_Persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Contacto" Type="Self.Contacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="PK_Persona" />
+            </Principal>
+            <Dependent Role="Contacto">
+              <PropertyRef Name="FK_Telefono_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacto_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Contacto" Type="Self.Contacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="PK_Usuario" />
+            </Principal>
+            <Dependent Role="Contacto">
+              <PropertyRef Name="FK_Telefono_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentoAdjunto_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="1" />
+          <End Role="DocumentoAdjunto" Type="Self.DocumentoAdjunto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="PK_Expediente" />
+            </Principal>
+            <Dependent Role="DocumentoAdjunto">
+              <PropertyRef Name="FK_DocAdjunto_Expediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expediente_ProcedimientoLegal">
+          <End Role="ProcedimientoLegal" Type="Self.ProcedimientoLegal" Multiplicity="0..1" />
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcedimientoLegal">
+              <PropertyRef Name="PK_Procedimiento" />
+            </Principal>
+            <Dependent Role="Expediente">
+              <PropertyRef Name="FK_Exp_Procedimientos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expediente_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="0..1" />
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Expediente">
+              <PropertyRef Name="FK_Expediente_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expediente_TablaGeneral1">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="0..1" />
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Expediente">
+              <PropertyRef Name="FK_Exp_AtencionBrindada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expediente_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="PK_Usuario" />
+            </Principal>
+            <Dependent Role="Expediente">
+              <PropertyRef Name="FK_Expediente_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Implicado_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="0..1" />
+          <End Role="Implicado" Type="Self.Implicado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="PK_Expediente" />
+            </Principal>
+            <Dependent Role="Implicado">
+              <PropertyRef Name="FK_Implicado_Expediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seguimiento_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="0..1" />
+          <End Role="Seguimiento" Type="Self.Seguimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="PK_Expediente" />
+            </Principal>
+            <Dependent Role="Seguimiento">
+              <PropertyRef Name="PK_Seguimiento_Expediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TipoDemanda_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="1" />
+          <End Role="TipoDemanda" Type="Self.TipoDemanda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="PK_Expediente" />
+            </Principal>
+            <Dependent Role="TipoDemanda">
+              <PropertyRef Name="FK_TipoDemanda_Expediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Implicado_Persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Implicado" Type="Self.Implicado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="PK_Persona" />
+            </Principal>
+            <Dependent Role="Implicado">
+              <PropertyRef Name="FK_Implicado_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Implicado_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="1" />
+          <End Role="Implicado" Type="Self.Implicado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Implicado">
+              <PropertyRef Name="FK_Implicado_Tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerDistrito_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="FK_Persona_Distrito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerEscolaridad_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="FK_Persona_Escolaridad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerEstadoCivil_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="FK_Persona_EstadoCivil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerNacionalidad_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="FK_Persona_Nacionalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerOcupacion_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="FK_Persona_Ocupacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerParentesco_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="FK_Persona_Parentesco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerSexo_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="FK_Persona_Sexo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProcedimientoLegal_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="1" />
+          <End Role="ProcedimientoLegal" Type="Self.ProcedimientoLegal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="ProcedimientoLegal">
+              <PropertyRef Name="FK_ProcedimientoRealizado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seguimiento_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Seguimiento" Type="Self.Seguimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="PK_Usuario" />
+            </Principal>
+            <Dependent Role="Seguimiento">
+              <PropertyRef Name="FK_Seg_UsuarioAsignado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seguimiento_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Seguimiento" Type="Self.Seguimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="PK_Usuario" />
+            </Principal>
+            <Dependent Role="Seguimiento">
+              <PropertyRef Name="FK_Seg_UsuarioAsignador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seguimiento_Usuario2">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Seguimiento" Type="Self.Seguimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="PK_Usuario" />
+            </Principal>
+            <Dependent Role="Seguimiento">
+              <PropertyRef Name="FK_Seg_UsuarioCancela" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TipoDemanda_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="1" />
+          <End Role="TipoDemanda" Type="Self.TipoDemanda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="TipoDemanda">
+              <PropertyRef Name="FK_TipoDemanda_tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_TablaGeneral">
+          <End Role="TablaGeneral" Type="Self.TablaGeneral" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TablaGeneral">
+              <PropertyRef Name="PK_TablaGeneral" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="FK_Usuario_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RolUsuario">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="*" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="SigecaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bitacora" EntityType="Self.Bitacora" />
+          <EntitySet Name="Cita" EntityType="Self.Cita" />
+          <EntitySet Name="Contacto" EntityType="Self.Contacto" />
+          <EntitySet Name="DocumentoAdjunto" EntityType="Self.DocumentoAdjunto" />
+          <EntitySet Name="Expediente" EntityType="Self.Expediente" />
+          <EntitySet Name="Implicado" EntityType="Self.Implicado" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" />
+          <EntitySet Name="ProcedimientoLegal" EntityType="Self.ProcedimientoLegal" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" />
+          <EntitySet Name="Seguimiento" EntityType="Self.Seguimiento" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TablaGeneral" EntityType="Self.TablaGeneral" />
+          <EntitySet Name="TipoDemanda" EntityType="Self.TipoDemanda" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_Bitacora_Usuario" Association="Self.FK_Bitacora_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Bitacora" EntitySet="Bitacora" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cita_Persona" Association="Self.FK_Cita_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Cita" EntitySet="Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cita_TablaGeneral" Association="Self.FK_Cita_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Cita" EntitySet="Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expediente_Cita" Association="Self.FK_Expediente_Cita">
+            <End Role="Cita" EntitySet="Cita" />
+            <End Role="Expediente" EntitySet="Expediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seguimiento_Cita" Association="Self.FK_Seguimiento_Cita">
+            <End Role="Cita" EntitySet="Cita" />
+            <End Role="Seguimiento" EntitySet="Seguimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacto_Persona" Association="Self.FK_Contacto_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Contacto" EntitySet="Contacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacto_Usuario" Association="Self.FK_Contacto_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Contacto" EntitySet="Contacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentoAdjunto_Expediente" Association="Self.FK_DocumentoAdjunto_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="DocumentoAdjunto" EntitySet="DocumentoAdjunto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expediente_ProcedimientoLegal" Association="Self.FK_Expediente_ProcedimientoLegal">
+            <End Role="ProcedimientoLegal" EntitySet="ProcedimientoLegal" />
+            <End Role="Expediente" EntitySet="Expediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expediente_TablaGeneral" Association="Self.FK_Expediente_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Expediente" EntitySet="Expediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expediente_TablaGeneral1" Association="Self.FK_Expediente_TablaGeneral1">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Expediente" EntitySet="Expediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expediente_Usuario" Association="Self.FK_Expediente_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Expediente" EntitySet="Expediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Implicado_Expediente" Association="Self.FK_Implicado_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Implicado" EntitySet="Implicado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seguimiento_Expediente" Association="Self.FK_Seguimiento_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Seguimiento" EntitySet="Seguimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TipoDemanda_Expediente" Association="Self.FK_TipoDemanda_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="TipoDemanda" EntitySet="TipoDemanda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Implicado_Persona" Association="Self.FK_Implicado_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Implicado" EntitySet="Implicado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Implicado_TablaGeneral" Association="Self.FK_Implicado_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Implicado" EntitySet="Implicado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerDistrito_TablaGeneral" Association="Self.FK_PerDistrito_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerEscolaridad_TablaGeneral" Association="Self.FK_PerEscolaridad_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerEstadoCivil_TablaGeneral" Association="Self.FK_PerEstadoCivil_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerNacionalidad_TablaGeneral" Association="Self.FK_PerNacionalidad_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerOcupacion_TablaGeneral" Association="Self.FK_PerOcupacion_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerParentesco_TablaGeneral" Association="Self.FK_PerParentesco_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerSexo_TablaGeneral" Association="Self.FK_PerSexo_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProcedimientoLegal_TablaGeneral" Association="Self.FK_ProcedimientoLegal_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="ProcedimientoLegal" EntitySet="ProcedimientoLegal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seguimiento_Usuario" Association="Self.FK_Seguimiento_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Seguimiento" EntitySet="Seguimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seguimiento_Usuario1" Association="Self.FK_Seguimiento_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Seguimiento" EntitySet="Seguimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seguimiento_Usuario2" Association="Self.FK_Seguimiento_Usuario2">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Seguimiento" EntitySet="Seguimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TipoDemanda_TablaGeneral" Association="Self.FK_TipoDemanda_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="TipoDemanda" EntitySet="TipoDemanda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_TablaGeneral" Association="Self.FK_Usuario_TablaGeneral">
+            <End Role="TablaGeneral" EntitySet="TablaGeneral" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="RolUsuario" Association="Self.RolUsuario">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SigecaModelStoreContainer" CdmEntityContainer="SigecaEntities">
+          <EntitySetMapping Name="Bitacora">
+            <EntityTypeMapping TypeName="SigecaModel.Bitacora">
+              <MappingFragment StoreEntitySet="Bitacora">
+                <ScalarProperty Name="PK_Bitacora" ColumnName="PK_Bitacora" />
+                <ScalarProperty Name="FK_Bitacora_Usuario" ColumnName="FK_Bitacora_Usuario" />
+                <ScalarProperty Name="movimiento" ColumnName="movimiento" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cita">
+            <EntityTypeMapping TypeName="SigecaModel.Cita">
+              <MappingFragment StoreEntitySet="Cita">
+                <ScalarProperty Name="PK_Cita" ColumnName="PK_Cita" />
+                <ScalarProperty Name="FK_Cita_Persona" ColumnName="FK_Cita_Persona" />
+                <ScalarProperty Name="FK_Cita_Estado" ColumnName="FK_Cita_Estado" />
+                <ScalarProperty Name="fechaSolicitud" ColumnName="fechaSolicitud" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacto">
+            <EntityTypeMapping TypeName="SigecaModel.Contacto">
+              <MappingFragment StoreEntitySet="Contacto">
+                <ScalarProperty Name="PK_Telefono" ColumnName="PK_Telefono" />
+                <ScalarProperty Name="FK_Telefono_Persona" ColumnName="FK_Telefono_Persona" />
+                <ScalarProperty Name="FK_Telefono_Usuario" ColumnName="FK_Telefono_Usuario" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentoAdjunto">
+            <EntityTypeMapping TypeName="SigecaModel.DocumentoAdjunto">
+              <MappingFragment StoreEntitySet="DocumentoAdjunto">
+                <ScalarProperty Name="PK_DocAdjunto" ColumnName="PK_DocAdjunto" />
+                <ScalarProperty Name="FK_DocAdjunto_Expediente" ColumnName="FK_DocAdjunto_Expediente" />
+                <ScalarProperty Name="documento" ColumnName="documento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Expediente">
+            <EntityTypeMapping TypeName="SigecaModel.Expediente">
+              <MappingFragment StoreEntitySet="Expediente">
+                <ScalarProperty Name="PK_Expediente" ColumnName="PK_Expediente" />
+                <ScalarProperty Name="FK_Expediente_Cita" ColumnName="FK_Expediente_Cita" />
+                <ScalarProperty Name="FK_Expediente_Usuario" ColumnName="FK_Expediente_Usuario" />
+                <ScalarProperty Name="FK_Expediente_Estado" ColumnName="FK_Expediente_Estado" />
+                <ScalarProperty Name="FK_Exp_AtencionBrindada" ColumnName="FK_Exp_AtencionBrindada" />
+                <ScalarProperty Name="FK_Exp_Procedimientos" ColumnName="FK_Exp_Procedimientos" />
+                <ScalarProperty Name="intervencionRealizada" ColumnName="intervencionRealizada" />
+                <ScalarProperty Name="valoracion" ColumnName="valoracion" />
+                <ScalarProperty Name="secuelas" ColumnName="secuelas" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Implicado">
+            <EntityTypeMapping TypeName="SigecaModel.Implicado">
+              <MappingFragment StoreEntitySet="Implicado">
+                <ScalarProperty Name="PK_Implicado" ColumnName="PK_Implicado" />
+                <ScalarProperty Name="FK_Implicado_Persona" ColumnName="FK_Implicado_Persona" />
+                <ScalarProperty Name="FK_Implicado_Tipo" ColumnName="FK_Implicado_Tipo" />
+                <ScalarProperty Name="FK_Implicado_Expediente" ColumnName="FK_Implicado_Expediente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persona">
+            <EntityTypeMapping TypeName="SigecaModel.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="PK_Persona" ColumnName="PK_Persona" />
+                <ScalarProperty Name="FK_Persona_Escolaridad" ColumnName="FK_Persona_Escolaridad" />
+                <ScalarProperty Name="FK_Persona_Sexo" ColumnName="FK_Persona_Sexo" />
+                <ScalarProperty Name="FK_Persona_Ocupacion" ColumnName="FK_Persona_Ocupacion" />
+                <ScalarProperty Name="FK_Persona_EstadoCivil" ColumnName="FK_Persona_EstadoCivil" />
+                <ScalarProperty Name="FK_Persona_Nacionalidad" ColumnName="FK_Persona_Nacionalidad" />
+                <ScalarProperty Name="FK_Persona_Distrito" ColumnName="FK_Persona_Distrito" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="numHijos" ColumnName="numHijos" />
+                <ScalarProperty Name="lugarTrabajo" ColumnName="lugarTrabajo" />
+                <ScalarProperty Name="direccionVivienda" ColumnName="direccionVivienda" />
+                <ScalarProperty Name="FK_Persona_Parentesco" ColumnName="FK_Persona_Parentesco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProcedimientoLegal">
+            <EntityTypeMapping TypeName="SigecaModel.ProcedimientoLegal">
+              <MappingFragment StoreEntitySet="ProcedimientoLegal">
+                <ScalarProperty Name="PK_Procedimiento" ColumnName="PK_Procedimiento" />
+                <ScalarProperty Name="FK_ProcedimientoRealizado" ColumnName="FK_ProcedimientoRealizado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="SigecaModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="PK_Rol" ColumnName="PK_Rol" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seguimiento">
+            <EntityTypeMapping TypeName="SigecaModel.Seguimiento">
+              <MappingFragment StoreEntitySet="Seguimiento">
+                <ScalarProperty Name="PK_Seguimiento" ColumnName="PK_Seguimiento" />
+                <ScalarProperty Name="PK_Seguimiento_Cita" ColumnName="PK_Seguimiento_Cita" />
+                <ScalarProperty Name="PK_Seguimiento_Expediente" ColumnName="PK_Seguimiento_Expediente" />
+                <ScalarProperty Name="FK_Seg_UsuarioAsignado" ColumnName="FK_Seg_UsuarioAsignado" />
+                <ScalarProperty Name="FK_Seg_UsuarioAsignador" ColumnName="FK_Seg_UsuarioAsignador" />
+                <ScalarProperty Name="FK_Seg_UsuarioCancela" ColumnName="FK_Seg_UsuarioCancela" />
+                <ScalarProperty Name="ResumenIntervencion" ColumnName="ResumenIntervencion" />
+                <ScalarProperty Name="fechaCita" ColumnName="fechaCita" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SigecaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TablaGeneral">
+            <EntityTypeMapping TypeName="SigecaModel.TablaGeneral">
+              <MappingFragment StoreEntitySet="TablaGeneral">
+                <ScalarProperty Name="PK_TablaGeneral" ColumnName="PK_TablaGeneral" />
+                <ScalarProperty Name="tabla" ColumnName="tabla" />
+                <ScalarProperty Name="campo" ColumnName="campo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoDemanda">
+            <EntityTypeMapping TypeName="SigecaModel.TipoDemanda">
+              <MappingFragment StoreEntitySet="TipoDemanda">
+                <ScalarProperty Name="PK_TipoDemanda" ColumnName="PK_TipoDemanda" />
+                <ScalarProperty Name="FK_TipoDemanda_Expediente" ColumnName="FK_TipoDemanda_Expediente" />
+                <ScalarProperty Name="FK_TipoDemanda_tipo" ColumnName="FK_TipoDemanda_tipo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="SigecaModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="PK_Usuario" ColumnName="PK_Usuario" />
+                <ScalarProperty Name="FK_Usuario_Estado" ColumnName="FK_Usuario_Estado" />
+                <ScalarProperty Name="correoInstitucional" ColumnName="correoInstitucional" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="RolUsuario" TypeName="SigecaModel.RolUsuario" StoreEntitySet="RolUsuario">
+            <EndProperty Name="Rol">
+              <ScalarProperty Name="PK_Rol" ColumnName="FK_Rol" />
+            </EndProperty>
+            <EndProperty Name="Usuario">
+              <ScalarProperty Name="PK_Usuario" ColumnName="FK_Rol_Usuario" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

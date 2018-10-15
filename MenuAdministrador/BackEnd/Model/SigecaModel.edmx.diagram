@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6d7c7f2e22ad421482396251c90a1b47" Name="Diagram1">
+        <EntityTypeShape EntityType="SigecaModel.Bitacora" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SigecaModel.Cita" Width="1.5" PointX="5.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SigecaModel.Contacto" Width="1.5" PointX="5.25" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SigecaModel.DocumentoAdjunto" Width="1.5" PointX="9.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SigecaModel.Expediente" Width="1.5" PointX="7.5" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SigecaModel.Implicado" Width="1.5" PointX="9.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SigecaModel.Persona" Width="1.5" PointX="3" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SigecaModel.ProcedimientoLegal" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SigecaModel.Rol" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="SigecaModel.Seguimiento" Width="1.5" PointX="12.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SigecaModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SigecaModel.TablaGeneral" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SigecaModel.TipoDemanda" Width="1.5" PointX="9.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SigecaModel.Usuario" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <AssociationConnector Association="SigecaModel.FK_Bitacora_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_Cita_Persona" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_Cita_TablaGeneral" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_Expediente_Cita" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_Seguimiento_Cita" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_Contacto_Persona" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_Contacto_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_DocumentoAdjunto_Expediente" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_Expediente_ProcedimientoLegal" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_Expediente_TablaGeneral" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_Expediente_TablaGeneral1" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_Expediente_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_Implicado_Expediente" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_Seguimiento_Expediente" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_TipoDemanda_Expediente" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_Implicado_Persona" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_Implicado_TablaGeneral" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_PerDistrito_TablaGeneral" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_PerEscolaridad_TablaGeneral" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_PerEstadoCivil_TablaGeneral" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_PerNacionalidad_TablaGeneral" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_PerOcupacion_TablaGeneral" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_PerParentesco_TablaGeneral" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_PerSexo_TablaGeneral" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_ProcedimientoLegal_TablaGeneral" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_Seguimiento_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_Seguimiento_Usuario1" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_Seguimiento_Usuario2" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_TipoDemanda_TablaGeneral" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.FK_Usuario_TablaGeneral" ManuallyRouted="false" />
+        <AssociationConnector Association="SigecaModel.RolUsuario" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
