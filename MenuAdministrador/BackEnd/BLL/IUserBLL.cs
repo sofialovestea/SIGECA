@@ -12,16 +12,15 @@ namespace BackEnd.BLL
 
         bool insertar(int idRole, string login);
         bool insertar(string roleName, string login);
-        User getUser(string userName);
-        User getUser(string userName, string password);
-        User getUser(int EmpleadoId);
-        User get(int id);
-        List<User> getAll();
-        bool isUserInRole(string userName, string roleName);
-        string[] gerRolesForUser(string userName);
-        List<User> getUsuariosRole(string roleName);
-        List<Role> listarRoles();
-        bool eliminar(string idRole, int idUsuario);
-        User ObtenerPorID(int id);
+        Usuario getUsuario(string nombreUsuario);
+        Usuario getUsuario(string nombreUsuario, string contrasenna);
+        Usuario get(int id);
+        List<Usuario> getAll();
+        //bool rolUsuario(string nombreUsuario, string rol);
+       // string[] getRolesUsuario(string nombreUsuario);
+      //  List<Usuario> getUsuarioRol(string nombreRol);
+        List<Rol> listarRoles();
+        bool eliminar(string idRol, int idUsuario);
+        Usuario ObtenerPorID(int id);
     }
 }
