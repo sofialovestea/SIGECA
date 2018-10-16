@@ -431,3 +431,138 @@ line-height: 1.428571429;
 }
 
 
+/*==============================================
+  footer    
+    =============================================*/
+
+#footer-sub{
+    background: #2C445E;
+    border-top: 1px solid #dbdbdb;
+    height: 350px;
+}
+
+#footer-main{
+    background-color: #012b72;
+}
+
+#footer-sub h5{
+    color:#fff;
+    margin-left: 0px;
+    padding: 0px;
+    margin-top: 25px;
+}
+
+#footer-sub ul{
+    list-style: none;
+    margin-top: 20px;
+      color:#fff;
+}
+
+
+#footer-sub ul li{
+margin-left: 8px;
+}
+
+#footer-sub a:link {
+    text-decoration: none;
+    color:#fff;
+    font-size: 12px;
+}
+
+#footer-sub a:visited {
+    text-decoration: none;
+     color:#fff;
+}
+
+
+#footer-sub a:hover {
+    text-decoration: none;
+     color:#fff;
+}
+
+
+#footer-sub a:active {
+    text-decoration: none;
+    color:#565656;
+}
+
+.vertical-line{
+    border-right: 1px solid #dbdbdb;
+    margin: 8px;
+    padding: 0px;
+}
+
+
+#sub-two{
+    margin: 0px;
+    padding: 0px;
+}
+
+#sub-two .vertical-line h4{
+    color:#6d6c6c;
+}
+
+
+#footer-main ul{
+    list-style: none;
+}
+
+#footer-main ul li{
+    float:left;
+    text-decoration: none;
+    padding-left: 15px;
+    margin-top: 12px;
+    text-align: center;
+}
+
+#footer-main h1 {
+    margin-top: 50px;
+    text-align: center;
+    text-orientation: center;
+    color:white;
+    font-size: 20px;
+}
+
+#footer-main a:visited {
+    color:white;
+}
+
+
+#footer-main a:hover {
+    text-decoration: none;
+    color: #00b9f5;
+}
+
+
+#footer-main a:active {
+    color:white;
+}
+
+
+
+#acercaDe h5
+{
+   color: white;
+   font-family:Arial;
+   text-align: center;
+   font-variant: 25px;
+
+}
+
+#acercaDe p{
+    color:#fff;
+   font-family:Arial;
+   text-align: center;
+ 
+
+}
+
+
+#side-padding{
+    padding: 0px;
+    margin: 0px;
+}
+
+
+
+
